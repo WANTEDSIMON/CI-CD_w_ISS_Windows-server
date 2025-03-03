@@ -886,9 +886,7 @@ It is a Cloud VPS 4C, 4 vCPU Cores 4 GB RAM 100 GB NVMe or 200 GB SSD 1 Snapshot
 - USE IP and Administrator
 
 3. Create Teacher Group:
-```
-
-```
+[Executable Scripts/Create Account_Teacher-Group.ps1](CI-CD_w_ISS_Windows-server/blob/main/Executable%20Scripts/Account_Teacher-Group.ps1)
 
 ### 2. Seting up CI-CD_w_ISS_Windows-server organisation in Azure DevOps
 
