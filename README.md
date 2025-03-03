@@ -86,6 +86,7 @@ public string Welcome(string name, int numTimes = 1)
 8. Run the app, then go to, localhost:Port/helloWorld/welcome?name=Rick&numtimes=4
 
 The following image shows the result:
+IMG:
 ![New Endpoint](img_readme/img_controller_helloworld_welcome_Rick4.png)
 
 
@@ -904,8 +905,13 @@ Could not run ISE, might been how I oppen the program. But Used Normal PowerShel
 
 Might do with Github Action one and one normal, not sure🤷‍♂️!?
 
+1. With outh YML - Classic varient
+2. Select Others -> ASP.NET Core -> Apply
+3. Disable TEST as we wont use any
+4. 
 
-3. 
+
+5. 
 
  
 
