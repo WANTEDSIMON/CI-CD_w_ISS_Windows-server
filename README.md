@@ -885,8 +885,15 @@ It is a Cloud VPS 4C, 4 vCPU Cores 4 GB RAM 100 GB NVMe or 200 GB SSD 1 Snapshot
 1. First use Remote Desktop Connection
 - USE IP and Administrator
 
-3. Create Teacher Group:
-[Executable Scripts/Create Account_Teacher-Group.ps1](CI-CD_w_ISS_Windows-server/blob/main/Executable%20Scripts/Account_Teacher-Group.ps1)
+2. Set up: lockout_settings.ps1
+![image](https://github.com/user-attachments/assets/e8f120ff-adaf-42f4-b39b-1b7855b7edcf)
+
+Could not run ISE, might been how I oppen the program. But Used Normal PowerShell as Admin
+
+4. Create Teacher Group:
+*/Executable Scripts/Account_Teacher-Group.ps1*
+
+
 
 ### 2. Seting up CI-CD_w_ISS_Windows-server organisation in Azure DevOps
 
