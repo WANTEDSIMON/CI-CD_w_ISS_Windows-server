@@ -894,7 +894,7 @@ Could not run ISE, might been how I oppen the program. But Used Normal PowerShel
 4. Create Teacher Group:
 */Executable Scripts/Account_Teacher-Group.ps1*
 
-
+#### Set up IIS on server
 
 ### 2. Seting up CI-CD_w_ISS_Windows-server organisation in Azure DevOps
 
@@ -905,6 +905,11 @@ Could not run ISE, might been how I oppen the program. But Used Normal PowerShel
 
 Might do with Github Action one and one normal, not sure🤷‍♂️!?
 
+Agent pool Default on first try(Agent job 1):
+![image](https://github.com/user-attachments/assets/24967922-6d8c-480c-942b-f094b73454ac)
+
+![image](https://github.com/user-attachments/assets/83ec7dbc-0297-436e-aeea-34dd0fd13f92)
+
 1. With outh YML - Classic varient
 2. Select Others -> ASP.NET Core -> Apply
 3. Disable TEST as we wont use any
@@ -914,18 +919,40 @@ Might do with Github Action one and one normal, not sure🤷‍♂️!?
 
 ![image](https://github.com/user-attachments/assets/f923e755-26d1-44dc-bafa-c2dc3c1704ae)
 
+5. Restor:
+![image](https://github.com/user-attachments/assets/3e891e20-322b-4743-929e-ba17011f7bcd)
+
+![image](https://github.com/user-attachments/assets/0041e960-d1ba-41a8-9873-96489495571d)
+
+6. Build
+![image](https://github.com/user-attachments/assets/57e5fb9f-fe45-4211-b45d-7643d42f71a8)
+
+![image](https://github.com/user-attachments/assets/562daf5b-4e48-4709-9039-8f3fa65ef8e0)
+
+7. Publish
+![image](https://github.com/user-attachments/assets/66f2f69a-8b58-4346-b595-ef33a5fce289)
+
+![image](https://github.com/user-attachments/assets/8293953d-d22f-457e-90fe-e744b2fad480)
+
+8. Publish build artifacts
+![image](https://github.com/user-attachments/assets/1d2cbc12-19c1-4764-a3c3-f2b58e343718)
+
+![image](https://github.com/user-attachments/assets/1118d3a4-a0f5-4b47-bde4-a3355a54d21e)
+
 
 Trigger:
 ![image](https://github.com/user-attachments/assets/946c2acf-044b-4397-b0b6-0939e28185a2)
 
 
-5. 
 
+Save and Queue,
+
+Create a release pipeline
  
 
 
 
-#### Set up IIS on server
+
 
 
 
