@@ -880,12 +880,13 @@ public class Movie
 
 ---
 
-### 1. Set up server Windows Server 2025 hosted on cotabo
+### 1. Set up server Windows Server 2022 hosted on cotabo
 It is a Cloud VPS 4C, 4 vCPU Cores 4 GB RAM 100 GB NVMe or 200 GB SSD 1 Snapshot 32 TB Traffic* Unlimited Incoming
 
 1. First use Remote Desktop Connection
 - USE IP and Administrator
 
+First used Server 2025, currenty not done this, but did on 2025. ... Problems with remote control access.
 2. Set up: lockout_settings.ps1
 ![image](https://github.com/user-attachments/assets/e8f120ff-adaf-42f4-b39b-1b7855b7edcf)
 
