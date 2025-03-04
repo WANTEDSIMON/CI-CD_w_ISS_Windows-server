@@ -908,7 +908,15 @@ Might do with Github Action one and one normal, not sure🤷‍♂️!?
 1. With outh YML - Classic varient
 2. Select Others -> ASP.NET Core -> Apply
 3. Disable TEST as we wont use any
-4. 
+4. + And sertch for Use .NET Core "So we an ad SDK"
+
+![image](https://github.com/user-attachments/assets/5cf6bb67-c48e-4bb0-9137-2122c6e899e9)
+
+![image](https://github.com/user-attachments/assets/f923e755-26d1-44dc-bafa-c2dc3c1704ae)
+
+
+Trigger:
+![image](https://github.com/user-attachments/assets/946c2acf-044b-4397-b0b6-0939e28185a2)
 
 
 5. 
