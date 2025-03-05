@@ -947,6 +947,8 @@ Img of working correct:
 To remove agent we can use:
 .\config remove
 
+Now on pipline later / now apply Contabo to the Agent and not "Default" as first try 
+
 1. With outh YML - Classic varient
 2. Select Others -> ASP.NET Core -> Apply
 3. Disable TEST as we wont use any
