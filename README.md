@@ -899,7 +899,8 @@ Could not run ISE, might been how I oppen the program. But Used Normal PowerShel
 ```PowerShell
 Install-WindowsFeature -name Web-Server, Web-ASP, Web-Mgmt-Tools, Web-WebSockets
 ```
-+
+&
+
 To restart IIS
 ```PowerShell
 Start-Process "iisreset.exe" -NoNewWindow -Wait
@@ -920,7 +921,31 @@ Might do with Github Action one and one normal, not sure🤷‍♂️!?
 Agent pool Default on first try(Agent job 1):
 ![image](https://github.com/user-attachments/assets/24967922-6d8c-480c-942b-f094b73454ac)
 
+Setting upp
+
 ![image](https://github.com/user-attachments/assets/83ec7dbc-0297-436e-aeea-34dd0fd13f92)
+
+"Tried to run the piplow as below, but pool faild," 
+![image](https://github.com/user-attachments/assets/6ba1939f-0396-45ae-af8f-3df99a5cf5d6)
+
+Open your web browser and log in to your Azure DevOps account.
+
+Navigate to your Azure DevOps project and click on Project settings in the left side of the page.
+
+Click on Agent Pools under Pipelines and click on Add pool.
+
+Sett up pool as(Select Pool-type as Self-hosted, give it a name and click on Create):
+![image](https://github.com/user-attachments/assets/dbbdbbbd-d802-4d2e-bffc-ecee0c753dd7)
+
+Click on New agent. It will show the below screen. We just have to follow the steps to create the agent. Click on the Download button to download the agent. (On server)
+![image](https://github.com/user-attachments/assets/9b1f8b5d-ffa6-48c4-a46c-d2e190e9a0f4)
+
+Img of working correct:
+![image](https://github.com/user-attachments/assets/099a54f3-348d-44ea-9d9f-93f7242c9dfa)
+
+
+To remove agent we can use:
+.\config remove
 
 1. With outh YML - Classic varient
 2. Select Others -> ASP.NET Core -> Apply
@@ -961,6 +986,10 @@ Save and Queue,
 
 Create a release pipeline
  
+1.From your Azure DevOps project, select Pipelines > Releases, and then select New > New release pipeline.
+
+2. On the Select a template screen, search for and select IIS website deployment, and then select Apply.
+
 
 
 
