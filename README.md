@@ -896,6 +896,17 @@ Could not run ISE, might been how I oppen the program. But Used Normal PowerShel
 */Executable Scripts/Account_Teacher-Group.ps1*
 
 #### Set up IIS on server
+```PowerShell
+Install-WindowsFeature -name Web-Server, Web-ASP, Web-Mgmt-Tools, Web-WebSockets
+```
++
+To restart IIS
+```PowerShell
+Start-Process "iisreset.exe" -NoNewWindow -Wait
+```
+
+Loading site:
+![img_iss_first_v1](https://github.com/user-attachments/assets/e21182b6-31a7-41ef-a9a8-a1785bd47fdc)
 
 ### 2. Seting up CI-CD_w_ISS_Windows-server organisation in Azure DevOps
 
