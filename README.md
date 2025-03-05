@@ -982,7 +982,7 @@ Now on pipline later / now apply Contabo to the Agent and not "Default" as first
 Trigger:
 ![image](https://github.com/user-attachments/assets/946c2acf-044b-4397-b0b6-0939e28185a2)
 
-
+Now with the changed Agent I got successfully run:
 
 Save and Queue,
 
@@ -992,8 +992,11 @@ Create a release pipeline
 
 2. On the Select a template screen, search for and select IIS website deployment, and then select Apply.
 
+![image](https://github.com/user-attachments/assets/ea38ba5d-868c-41d2-8e94-11b1c7bfbd93)
 
 
+3. add articact:
+![image](https://github.com/user-attachments/assets/cb844600-d285-44ec-8680-40c1b31968a5)
 
 
 
