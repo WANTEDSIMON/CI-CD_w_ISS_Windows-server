@@ -47,7 +47,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.IIS_SERVER }}  # Windows Server IP or domain
-          username: Administrator  # Using the default Windows Administrator user
+          username: administrator  # Using the default Windows Administrator user
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # SSH Private Key stored in GitHub Secrets
           script: |
             # Stop IIS before deployment
