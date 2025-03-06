@@ -1,9 +1,7 @@
 name: Add to TrustedHosts
 
 on:
-  push:
-    branches:
-      - main  # Change if you're using a different branch
+  workflow_call:
 
 jobs:
   configure-trustedhosts:
