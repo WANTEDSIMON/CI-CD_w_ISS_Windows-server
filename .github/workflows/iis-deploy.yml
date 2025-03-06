@@ -46,8 +46,8 @@ jobs:
       - name: 🚀 Deploy to IIS via PowerShell
         shell: pwsh
         run: |
-         $password = ConvertTo-SecureString ${{ secrets.IIS_PASSWORD }} -AsPlainText -Force
-         $cred = New-Object System.Management.Automation.PSCredential ('${{ secrets.IIS_USERNAME }}', $password)
+          $password = ConvertTo-SecureString ${{ secrets.IIS_PASSWORD }} -AsPlainText -Force
+          $cred = New-Object System.Management.Automation.PSCredential ('${{ secrets.IIS_USERNAME }}', $password)
 
           Invoke-Command -ComputerName '${{ secrets.IIS_SERVER }}' -Credential $cred -Authentication Negotiate -ScriptBlock {
             param ($appPath)
@@ -62,14 +62,7 @@ jobs:
             New-Item -ItemType Directory -Path "C:\inetpub\wwwroot\MvcMovie" -Force
             Copy-Item -Path $appPath\* -Destination "C:\inetpub\wwwroot\MvcMovie" -Recurse -Force
 
-            # Remove old files and deploy new ones
-            Write-Host "Deploying files..."
-            Remove-Item -Recurse -Force "C:\inetpub\wwwroot\MvcMovie" -ErrorAction SilentlyContinue
-            New-Item -ItemType Directory -Path "C:\inetpub\wwwroot\MvcMovie" -Force
-            Copy-Item -Path $appPath\* -Destination "C:\inetpub\wwwroot\MvcMovie" -Recurse -Force
-
             # Start IIS
             Write-Host "Starting IIS..."
             Start-Service W3SVC
-
           } -ArgumentList "$PWD\deploy"
