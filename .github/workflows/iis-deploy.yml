@@ -1,4 +1,4 @@
-name: Deploy to IIS
+name: Deploy to IIS via SSH
 
 on:
   workflow_call:
@@ -30,10 +30,11 @@ jobs:
         with:
           name: published-app
           path: ./publish
+          retention-days: 5  # Keeps artifacts for 5 days
 
   deploy:
-    needs: build  # Runs after build job
-    runs-on: windows-latest
+    needs: build  # Run only after build is successful
+    runs-on: ubuntu-latest  # Using Ubuntu for SSH-based deployment
 
     steps:
       - name: 📥 Download Artifact
@@ -42,26 +43,17 @@ jobs:
           name: published-app
           path: ./deploy
 
-      - name: 🚀 Deploy to IIS via PowerShell
-        shell: pwsh
-        run: |
-          $password = ConvertTo-SecureString "MyStrongPassword123!" -AsPlainText -Force
-          $cred = New-Object System.Management.Automation.PSCredential ('${{ secrets.IIS_USERNAME }}', $password)
-
-          Invoke-Command -ComputerName '${{ secrets.IIS_SERVER }}' -Credential $cred -Authentication Negotiate -ScriptBlock {
-            param ($appPath)
-
-            # Stop IIS
-            Write-Host "Stopping IIS..."
+      - name: 🚀 Deploy to IIS via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.IIS_SERVER }}  # Windows Server IP or domain
+          username: Administrator  # Using the default Windows Administrator user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}  # SSH Private Key stored in GitHub Secrets
+          script: |
+            # Stop IIS before deployment
             Stop-Service W3SVC -Force
-
+            
             # Remove old files and deploy new ones
-            Write-Host "Deploying files..."
             Remove-Item -Recurse -Force "C:\inetpub\wwwroot\MvcMovie" -ErrorAction SilentlyContinue
             New-Item -ItemType Directory -Path "C:\inetpub\wwwroot\MvcMovie" -Force
-            Copy-Item -Path $appPath\* -Destination "C:\inetpub\wwwroot\MvcMovie" -Recurse -Force
-
-            # Start IIS
-            Write-Host "Starting IIS..."
-            Start-Service W3SVC
-          } -ArgumentList "$PWD\deploy"
+            Copy-Item -Path "$HOME/deploy/*" -Destination "C:\inetpu
