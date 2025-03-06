@@ -46,7 +46,7 @@ jobs:
       - name: 🚀 Deploy to IIS via PowerShell
         shell: pwsh
         run: |
-          $password = ConvertTo-SecureString ${{ secrets.IIS_PASSWORD }} -AsPlainText -Force
+          $password = ConvertTo-SecureString -String "${{ secrets.IIS_PASSWORD }}" -AsPlainText -Force
           $cred = New-Object System.Management.Automation.PSCredential ('${{ secrets.IIS_USERNAME }}', $password)
 
           Invoke-Command -ComputerName '${{ secrets.IIS_SERVER }}' -Credential $cred -Authentication Negotiate -ScriptBlock {
