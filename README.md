@@ -883,6 +883,27 @@ public class Movie
 ### 1. Set up server Windows Server 2022 hosted on cotabo
 It is a Cloud VPS 4C, 4 vCPU Cores 4 GB RAM 100 GB NVMe or 200 GB SSD 1 Snapshot 32 TB Traffic* Unlimited Incoming
 
+
+
+
+
+
+
+---
+
+### Extra 1. Tried set up the code from terminal 
+
+1. Install .NET SDK: Ensure .NET SDK is installed.
+2. Create Project: `dotnet new mvc -n MyMvcApp`
+3. Navigate to Directory: `cd MyMvcApp`
+4. Run Project: `dotnet run`
+5. Open in IDE: `start devenv .`
+
+Problem was finding solution file, code could run but could not continue with the guid.
+
+
+### Extra 2. Tried to use clasic Azuer devospos:
+
 1. First use Remote Desktop Connection
 - USE IP and Administrator
 
@@ -997,19 +1018,3 @@ Create a release pipeline
 
 3. add articact:
 ![image](https://github.com/user-attachments/assets/cb844600-d285-44ec-8680-40c1b31968a5)
-
-
-
-
-
----
-
-### Extra 1. Tried set up the code from terminal 
-
-1. Install .NET SDK: Ensure .NET SDK is installed.
-2. Create Project: `dotnet new mvc -n MyMvcApp`
-3. Navigate to Directory: `cd MyMvcApp`
-4. Run Project: `dotnet run`
-5. Open in IDE: `start devenv .`
-
-Problem was finding solution file, code could run but could not continue with the guid.
