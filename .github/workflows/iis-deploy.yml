@@ -1,0 +1,43 @@
+name: Deploy to IIS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: 📥 Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: published-app
+          path: ./deploy
+
+      - name: 🚀 Deploy to IIS via PowerShell
+        shell: pwsh
+        run: |
+          $password = ConvertTo-SecureString '${{ secrets.IIS_PASSWORD }}' -AsPlainText -Force
+          $cred = New-Object System.Management.Automation.PSCredential ('${{ secrets.IIS_USERNAME }}', $password)
+
+          # Add the target server to the TrustedHosts list
+          Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value '${{ secrets.IIS_SERVER }}' -Force
+
+          Invoke-Command -ComputerName '${{ secrets.IIS_SERVER }}' -Credential $cred -Authentication Negotiate -ScriptBlock {
+            param ($appPath)
+
+            # Stop IIS
+            Write-Host "Stopping IIS..."
+            Stop-Service W3SVC -Force
+
+            # Remove old files and deploy new ones
+            Write-Host "Deploying files..."
+            Remove-Item -Recurse -Force "C:\inetpub\wwwroot\MvcMovie" -ErrorAction SilentlyContinue
+            New-Item -ItemType Directory -Path "C:\inetpub\wwwroot\MvcMovie" -Force
+            Copy-Item -Path $appPath\* -Destination "C:\inetpub\wwwroot\MvcMovie" -Recurse -Force
+
+            # Start IIS
+            Write-Host "Starting IIS..."
+            Start-Service W3SVC
+
+          } -ArgumentList "$PWD\deploy"
