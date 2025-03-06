@@ -30,7 +30,6 @@ jobs:
         with:
           name: published-app
           path: ./publish
-          retention-days: 5  # Optional, keeps artifacts for 5 days
 
   deploy:
     needs: build  # Runs after build job
@@ -43,18 +42,10 @@ jobs:
           name: published-app
           path: ./deploy
 
-      - name: 🔍 Debug IIS_PASSWORD in GitHub Actions
-        run: |
-         echo "IIS_PASSWORD length: " ${#IIS_PASSWORD}
-        env: 
-         IIS_PASSWORD: ${{ secrets.IIS_PASSWORD }}
-
-
-
       - name: 🚀 Deploy to IIS via PowerShell
         shell: pwsh
         run: |
-          $password = ConvertTo-SecureString -String "${{ secrets.IIS_PASSWORD }}" -AsPlainText -Force
+          $password = ConvertTo-SecureString "MyStrongPassword123!" -AsPlainText -Force
           $cred = New-Object System.Management.Automation.PSCredential ('${{ secrets.IIS_USERNAME }}', $password)
 
           Invoke-Command -ComputerName '${{ secrets.IIS_SERVER }}' -Credential $cred -Authentication Negotiate -ScriptBlock {
