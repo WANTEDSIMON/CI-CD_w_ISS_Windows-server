@@ -56,4 +56,6 @@ jobs:
             # Remove old files and deploy new ones
             Remove-Item -Recurse -Force "C:\inetpub\wwwroot\MvcMovie" -ErrorAction SilentlyContinue
             New-Item -ItemType Directory -Path "C:\inetpub\wwwroot\MvcMovie" -Force
-            Copy-Item -Path "$HOME/deploy/*" -Destination "C:\inetpu
+            Copy-Item -Path "$HOME/deploy/*" -Destination "C:\inetpub\wwwroot\MvcMovie"
+            # Start IIS after deployment
+            Start-Service W3SVC
