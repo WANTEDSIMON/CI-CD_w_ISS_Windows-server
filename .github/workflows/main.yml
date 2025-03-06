@@ -1,1 +1,72 @@
+name: Deploy to IIS
+
+on:
+  push:
+    branches:
+      - main  # Change if you're using a different branch
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: 📂 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Setup .NET 9
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: 🔄 Restore Dependencies
+        run: dotnet restore MvcMovie.sln
+
+      - name: 🏗️ Build Project
+        run: dotnet build MvcMovie.sln --configuration Release --no-restore
+
+      - name: 📦 Publish for Deployment
+        run: dotnet publish MvcMovie.sln --configuration Release --output ./publish --no-build
+
+      - name: 📤 Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-app
+          path: ./publish
+          retention-days: 5  # Optional, keeps artifacts for 5 days
+
+  deploy:
+    needs: build  # Runs after build job
+    runs-on: windows-latest
+
+    steps:
+      - name: 📥 Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: published-app
+          path: ./deploy
+
+      - name: 🚀 Deploy to IIS via PowerShell
+        shell: pwsh
+        run: |
+          $password = ConvertTo-SecureString '${{ secrets.IIS_PASSWORD }}' -AsPlainText -Force
+          $cred = New-Object System.Management.Automation.PSCredential ('${{ secrets.IIS_USERNAME }}', $password)
+
+          Invoke-Command -ComputerName '${{ secrets.IIS_SERVER }}' -Credential $cred -Authentication Negotiate -ScriptBlock {
+            param ($appPath)
+
+            # Stop IIS
+            Write-Host "Stopping IIS..."
+            Stop-Service W3SVC -Force
+
+            # Remove old files and deploy new ones
+            Write-Host "Deploying files..."
+            Remove-Item -Recurse -Force "C:\inetpub\wwwroot\MvcMovie" -ErrorAction SilentlyContinue
+            New-Item -ItemType Directory -Path "C:\inetpub\wwwroot\MvcMovie" -Force
+            Copy-Item -Path $appPath\* -Destination "C:\inetpub\wwwroot\MvcMovie" -Recurse -Force
+
+            # Start IIS
+            Write-Host "Starting IIS..."
+            Start-Service W3SVC
+
+          } -ArgumentList "$PWD\deploy"
 
