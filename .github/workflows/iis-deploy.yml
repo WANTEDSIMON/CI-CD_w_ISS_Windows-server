@@ -43,6 +43,14 @@ jobs:
           name: published-app
           path: ./deploy
 
+      - name: 🔍 Debug IIS_PASSWORD in GitHub Actions
+        run: |
+         echo "IIS_PASSWORD length: " ${#IIS_PASSWORD}
+        env: 
+         IIS_PASSWORD: ${{ secrets.IIS_PASSWORD }}
+
+
+
       - name: 🚀 Deploy to IIS via PowerShell
         shell: pwsh
         run: |
