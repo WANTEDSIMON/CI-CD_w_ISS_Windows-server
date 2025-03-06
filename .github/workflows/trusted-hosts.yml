@@ -1,0 +1,17 @@
+name: Add to TrustedHosts
+
+on:
+  push:
+    branches:
+      - main  # Change if you're using a different branch
+
+jobs:
+  configure-trustedhosts:
+    runs-on: windows-latest
+
+    steps:
+      - name: 🏗️ Configure TrustedHosts
+        shell: pwsh
+        run: |
+          Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value '${{ secrets.IIS_SERVER }}' -Force
+          Get-Item -Path WSMan:\localhost\Client\TrustedHosts
